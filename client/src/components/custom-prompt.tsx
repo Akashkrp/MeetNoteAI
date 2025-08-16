@@ -13,7 +13,7 @@ interface CustomPromptProps {
   onPromptChange: (prompt: string) => void;
   onBack: () => void;
   onGenerate: () => void;
-  onSummaryGenerated: (summary: string, summaryId: string) => void;
+  onSummaryGenerated: (summary: string, summaryId: string, aiProvider?: string) => void;
   isActive: boolean;
 }
 
@@ -41,10 +41,10 @@ export default function CustomPrompt({
       return response.json();
     },
     onSuccess: (data) => {
-      onSummaryGenerated(data.generatedSummary, data.id);
+      onSummaryGenerated(data.generatedSummary, data.id, data.aiProvider);
       toast({
         title: "Summary generated successfully",
-        description: "Your AI-powered summary is ready for review",
+        description: data.aiProvider ? `Generated using ${data.aiProvider}` : "Your AI-powered summary is ready for review",
       });
     },
     onError: (error: any) => {
