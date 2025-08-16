@@ -40,7 +40,7 @@ export class MemStorage implements IStorage {
     const emailLog: EmailLog = {
       id,
       summaryId: insertEmailLog.summaryId,
-      recipients: Array.from(insertEmailLog.recipients),
+      recipients: insertEmailLog.recipients,
       subject: insertEmailLog.subject,
       message: insertEmailLog.message || null,
       sentAt: new Date(),
